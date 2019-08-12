@@ -10,7 +10,6 @@ class Hanoi:
                 disks.append(i)
             disks.reverse()
             self.disk_array = disks
-            print(self.disk_array)
             self.rods = {
                 "1": disks,
                 "2": [],
@@ -22,7 +21,6 @@ class Hanoi:
             with open(file, 'r') as f:
                 text = f.read()
                 lines = text.split('\n')
-                print(lines)
         except Exception as e:
             print(str(e))
         
@@ -35,7 +33,6 @@ class Hanoi:
         # Check disks is integer
         try:
             self.disks = int(self.disks)
-            print(self.disks)
         except ValueError as ve:
             print(str(ve))
             return "NO"
@@ -56,7 +53,6 @@ class Hanoi:
 
         # Check that the source rod is not empty  
         if not self.rods[origin]:
-            print("test2")
             print("Cannot retrieve disks from empty rod")
             return "NO"
 
@@ -66,8 +62,6 @@ class Hanoi:
         # Validate that the disk in target rod is not smaller than the new disk inserted
         if self.rods[destination]:
             if self.rods[destination][-1] < disk:
-                print("test3")
-                print(self.rods)
                 print("Move violates the rules.")
                 return "NO"
             else:
@@ -84,7 +78,6 @@ class Hanoi:
         min_moves = 2 ** self.disks - 1 
         print(min_moves)
         if len(self.moves) < min_moves:
-            print("test1")
             print("At least", min_moves, "moves are required to solve this problem")
             return "NO"
 
@@ -96,8 +89,6 @@ class Hanoi:
         # Check either rod 2 or 3 holds the all disks in the proper order
         print(self.disk_array)
         if self.rods["2"] == self.disk_array or self.rods["3"] == self.disk_array:
-            print("test4")
-            print("YES")
             return "YES"
         else:
             return "NO"
@@ -105,11 +96,3 @@ class Hanoi:
 
 
     
-if __name__ == "__main__":
-    game = Hanoi("input3.txt")
-    # print(game.disks, game.moves)
-    # game2 = Hanoi("no_moves.txt") 
-    # print(game2.check_input()) 
-    # game3 = Hanoi("input2.txt")
-    # print(game3.check_input())
-    game.check_if_won()
